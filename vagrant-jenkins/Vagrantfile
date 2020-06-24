@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ENV['VAGRANT_NO_PARALLEL'] = 'yes'
+
+Vagrant.configure(2) do |config|
+
+
+  config.vm.define "jenkins" do |jenkinsmp|
+    jenkinsmp.vm.box = "ubuntu/bionic64"
+    jenkins.vm.hostname = "jenkins.example.com"
+    jenkins.disksize.size = '30GB'
+    jenkins.vm.network "public_network",
+      use_dhcp_assigned_default_route: true
+    jenkins.vm.network "private_network", ip: "172.42.42.100"
+    jenkins.vm.provider "virtualbox" do |v|
+      v.name = "jenkins"
+      v.memory = 3072
+      v.cpus = 2
+    end
+    jenkinsmp.vm.provision "shell", path: "jenkins.sh"
+  end
+end
