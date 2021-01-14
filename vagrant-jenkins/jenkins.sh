@@ -5,12 +5,13 @@ echo "[TASK 1] Install Jenkins"
 apt update -y
 apt install -y openjdk-8-jdk
 
-wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
-    /etc/apt/sources.list.d/jenkins.list'
-sudo apt-get update
-sudo apt-get install jenkins -y
-
+function jenkins_install {
+    wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+    sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > 
+        /etc/apt/sources.list.d/jenkins.list'
+    sudo apt-get update
+    sudo apt-get install jenkins -y
+}
 # Install nodejs 10
 echo "[TASK 2] Install nodejs 10"
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
