@@ -18,6 +18,6 @@ Vagrant.configure(2) do |config|
       v.memory = 1536
       v.cpus = 2
     end
-    lemp.vm.provision "shell", path: "lemp.sh"
+    #lemp.vm.provision "shell", path: "updated_lemp.sh"
   end
 end
