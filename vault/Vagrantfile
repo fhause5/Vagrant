@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ENV['VAGRANT_NO_PARALLEL'] = 'yes'
+
+Vagrant.configure(2) do |config|
+
+
+  config.vm.define "vault" do |vault|
+    vault.vm.box = "ubuntu/bionic64"
+    vault.vm.hostname = "vault.example.com"
+#    vault.disksize.size = '30GB'
+    vault.vm.network "public_network",
+      use_dhcp_assigned_default_route: true
+    vault.vm.network "private_network", ip: "172.42.42.100"
+    vault.vm.provider "virtualbox" do |v|
+      v.name = "vault"
+      v.memory = 1536
+      v.cpus = 2
+    end
+    vault.vm.provision "shell", path: "vault.sh"
+  end
+end
