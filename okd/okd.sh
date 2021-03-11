@@ -15,12 +15,13 @@ function OC {
 echo "[TASK 4] Enable ssh password authentication"
 sed -i 's/^PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 systemctl reload sshd
-
+systemctl enable docker
+systemctl restart docker
 
 
 # Update vagrant user's bashrc file
 echo "export TERM=xterm" >> /etc/bashrc
-
+OC
 ip a
 
 
